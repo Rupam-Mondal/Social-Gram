@@ -1,7 +1,7 @@
 import express from 'express';
 import { connectDB } from './config/dbConfig.js';
-import { createPost } from './services/postService.js';
 import upload from './config/multerConfig.js';
+import { createPost } from './controllers/postController.js';
 
 const port = 3000;
 
@@ -19,10 +19,7 @@ app.get('/ping' , (req , res) => {
     return res.json({msg:"This is /ping"});
 });
 
-app.post('/posts' ,upload.single('image') ,  (req , res) => {
-    console.log(req.file.path);
-    return res.json({"msg":"uploaded"});
-});
+app.post('/posts' ,upload.single('image') ,  createPost);
 
 app.listen(port , () => {
     console.log("Server connected");

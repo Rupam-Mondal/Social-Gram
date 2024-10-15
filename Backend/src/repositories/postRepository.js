@@ -1,9 +1,9 @@
-import Post from "../schema/post";
+import Post from "../schema/post.js";
 
 
-export async function createPost(caption , img , user){
+export async function createPostOnDb(caption , image , user){
     try {
-        const newPost = Post.create({caption , img , user});
+        const newPost = await Post.create({caption , image , user});
         return newPost;
 
 
