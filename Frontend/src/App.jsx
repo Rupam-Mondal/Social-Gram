@@ -1,10 +1,11 @@
-import EveryImage from "./Components/Imageholder/everyImage";
+import './App.css'
+import Leftbar from './Components/Leftbar/Leftbar';
 
 function App(){
   return (
     <>
-      <div className="h-screen w-full">
-        <EveryImage/>
+      <div className='h-screen w-full flex overflow-y-hidden'>
+        <Leftbar/>
       </div>
     </>
   )
