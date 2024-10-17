@@ -1,7 +1,8 @@
-import { allpostservice, createPostService, deletepostservice } from "../services/postService.js";
+import { allpostservice, createPostService, deletepostservice, updatepostservice } from "../services/postService.js";
 
 export async function createPost(req , res){
 
+    console.log(req.body)
     const post = await createPostService({
         caption: req.body.caption,
         image: req.file.path 
@@ -43,5 +44,27 @@ export async function deletepost(req , res){
         success: true,
         message: "Posts deleted successfully",
         data: responsecontroller
+    })
+}
+
+export async function updatepost(req , res){
+    const postid = req.params.id;
+    const updatedobject = req.body;
+    if(req.file){
+        updatedobject.image = req.file.path;
+    }
+    console.log(updatedobject);
+    const response = await updatepostservice(postid , updatedobject);
+    if(!response){
+        return res.status(404).json({
+            success: false,
+            message: "Some error occurred",
+            data: response
+        })
+    }
+    return res.status(200).json({
+        success:true,
+        message:"Post updated succesfully",
+        data:response
     })
 }

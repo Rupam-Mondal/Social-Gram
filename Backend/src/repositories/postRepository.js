@@ -38,3 +38,10 @@ export const deletePostById = async (id) => {
         console.log(error);
     }
 }
+
+export async function updatepostbyid(id, object){
+    console.log(id, object)
+    const post = await Post.findByIdAndUpdate(id , object , {new:true});
+    console.log(post)
+    return post;
+}
