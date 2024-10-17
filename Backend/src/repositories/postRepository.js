@@ -12,9 +12,9 @@ export async function createPostOnDb(caption , image , user){
     }
 }
 
-export const findAllPosts = async () => {
+export const findAllPosts = async (limit , offset) => {
     try {
-        const posts = await Post.find();
+        const posts = await Post.find().skip(offset).limit(limit);
         return posts;
     } catch (error) {
         console.log(error);
