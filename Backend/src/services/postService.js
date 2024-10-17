@@ -1,4 +1,4 @@
-import { createPostOnDb, findAllPosts } from "../repositories/postRepository.js";
+import { createPostOnDb, deletePostById, findAllPosts } from "../repositories/postRepository.js";
 
 
 export async function createPostService(object){
@@ -13,4 +13,10 @@ export async function createPostService(object){
 export async function allpostservice(limit, offset){
     const allpost = await findAllPosts(limit , offset);
     return {allpost}
+}
+
+export async function deletepostservice(id){
+    const response = await deletePostById(id);
+    console.log(response);
+    return response;
 }

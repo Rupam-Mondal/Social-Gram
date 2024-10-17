@@ -1,4 +1,4 @@
-import { allpostservice, createPostService } from "../services/postService.js";
+import { allpostservice, createPostService, deletepostservice } from "../services/postService.js";
 
 export async function createPost(req , res){
 
@@ -24,5 +24,24 @@ export async function getAllpost(req , res){
         success: true,
         message: "Posts fetched successfully",
         data: paginatedpost
+    })
+}
+
+export async function deletepost(req , res){
+    const postId = req.params.id;
+
+    const responsecontroller = await deletepostservice(postId);
+
+    if(!responsecontroller){
+        return res.status(404).json({
+            success: false,
+            message: "No post is there",
+        })
+    }
+
+    return res.status(200).json({
+        success: true,
+        message: "Posts deleted successfully",
+        data: responsecontroller
     })
 }
