@@ -1,7 +1,11 @@
+import EveryImage from "./Components/Imageholder/everyImage";
+
 function App(){
   return (
     <>
-      <div className="bg-red-500">Hi bro</div>
+      <div className="h-screen w-full">
+        <EveryImage/>
+      </div>
     </>
   )
 }
