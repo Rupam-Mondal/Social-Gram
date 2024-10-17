@@ -1,12 +1,11 @@
 import './App.css'
 import Leftbar from './Components/Leftbar/Leftbar';
+import { Routing } from './Routes/Routing';
 
 function App(){
   return (
     <>
-      <div className='h-screen w-full flex overflow-y-hidden'>
-        <Leftbar/>
-      </div>
+      <Routing/>
     </>
   )
 }
