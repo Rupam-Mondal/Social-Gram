@@ -2,6 +2,7 @@ import express from 'express';
 import { connectDB } from './config/dbConfig.js';
 import postrouter from './Routes/postrouter.js';
 import cors from 'cors';
+import UserRouter from './Routes/userRouter.js';
 
 
 const port = 3000;
@@ -27,6 +28,7 @@ app.get('/ping' , (req , res) => {
 });
 
 app.use('/post' , postrouter);
+app.use('/user' , UserRouter);
 
 app.listen(port , () => {
     console.log("Server connected");

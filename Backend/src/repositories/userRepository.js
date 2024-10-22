@@ -1,4 +1,4 @@
-import User from "../schema/user";
+import User from "../schema/user.js";
 
 export async function findUserByEmail(email){
     try {
@@ -15,5 +15,17 @@ export async function findAllUser(){
         return users;
     } catch (error) {
         console.log("Something went wrong");
+    }
+}
+
+export async function createuser(userobject){
+    try{
+        const response = User.create(userobject);
+        return response;
+    }
+    catch(e){
+        throw {
+            message:"Something went wrong"
+        }
     }
 }
