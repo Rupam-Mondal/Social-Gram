@@ -1,4 +1,4 @@
-import { signupservice } from "../services/userService.js";
+import { signinservice, signupservice } from "../services/userService.js";
 
 export async function signup(req , res){
     try{
@@ -14,6 +14,21 @@ export async function signup(req , res){
     catch(e){
         return res.json({
             message:"Soemthing went wrong"
+        })
+    }
+}
+
+export async function signin(req , res){
+    try {
+        const response = await signinservice(req.body);
+        return res.json({
+            success:true,
+            message:"User signin successfully",
+            data:response
+        })
+    } catch (error) {
+        return res.json({
+            message: "User Not found"
         })
     }
 }
