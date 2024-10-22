@@ -2,9 +2,7 @@ import User from "../schema/user.js";
 
 export async function findUserByEmail(email){
     try {
-        console.log(email);
         const user = await User.findOne({email});
-        console.log(user);
         return user;
     } catch (error) {
         console.log("Something went wrong");
