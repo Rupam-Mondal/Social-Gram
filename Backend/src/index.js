@@ -3,6 +3,7 @@ import { connectDB } from './config/dbConfig.js';
 import postrouter from './Routes/postrouter.js';
 import cors from 'cors';
 import UserRouter from './Routes/userRouter.js';
+import { isAuthenticate } from './Middlewares/authMiddleware.js';
 
 
 const port = 3000;
@@ -22,7 +23,7 @@ app.post('/', (req, res) => {
     return res.json({ msg: "This is /" });
 });
 
-app.get('/ping' , (req , res) => {
+app.get('/ping' , isAuthenticate, (req , res) => {
     console.log(req.body)
     return res.json({msg:"This is /ping"});
 });
