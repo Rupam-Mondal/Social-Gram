@@ -14,7 +14,7 @@ export async function createPostOnDb(caption , image , user){
 
 export const findAllPosts = async (limit , offset) => {
     try {
-        const posts = await Post.find().skip(offset).limit(limit);
+        const posts = await Post.find().skip(offset).limit(limit).populate('user' , 'username email _id');
         return posts;
     } catch (error) {
         console.log(error);
