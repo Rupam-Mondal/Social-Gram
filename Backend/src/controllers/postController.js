@@ -1,11 +1,14 @@
 import { allpostservice, createPostService, deletepostservice, updatepostservice } from "../services/postService.js";
 
 export async function createPost(req , res){
+    const userDetails = req.user;
+    console.log(userDetails)
 
     console.log(req.body)
     const post = await createPostService({
         caption: req.body.caption,
-        image: req.file.path 
+        image: req.file.path,
+        userid: userDetails.id
     })
 
     return res.status(201).json({

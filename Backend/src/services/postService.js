@@ -4,8 +4,9 @@ import { createPostOnDb, deletePostById, findAllPosts, updatepostbyid } from "..
 export async function createPostService(object){
     const caption = object.caption;
     const image = object.image;
+    const userid = object.userid;
 
-    const post = await createPostOnDb(caption , image)
+    const post = await createPostOnDb(caption , image , userid)
 
     return post;
 }
