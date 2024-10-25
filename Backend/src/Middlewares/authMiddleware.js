@@ -12,7 +12,6 @@ export function isAuthenticate(req , res , next){
     }
     try {
         const response = verifyJwtToken(Token);
-        console.log(response)
         const userfetched = findUserByEmail(response.email);
         if(!userfetched){
             return res.json({
@@ -21,7 +20,6 @@ export function isAuthenticate(req , res , next){
             })
         }
         req.user = response;
-
         next();
     } catch (error) {
         res.json({
