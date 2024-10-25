@@ -59,23 +59,31 @@ export async function deletepost(req , res){
 }
 
 export async function updatepost(req , res){
-    const postid = req.params.id;
-    const updatedobject = req.body;
-    if(req.file){
-        updatedobject.image = req.file.path;
-    }
-    console.log(updatedobject);
-    const response = await updatepostservice(postid , updatedobject);
-    if(!response){
-        return res.status(404).json({
-            success: false,
-            message: "Some error occurred",
+    try{
+        const postid = req.params.id;
+        const userid = req.user.id;
+        const updatedobject = req.body;
+        if (req.file) {
+            updatedobject.image = req.file.path;
+        }
+        console.log(updatedobject);
+        const response = await updatepostservice(postid, updatedobject, userid);
+        if (!response) {
+            return res.status(404).json({
+                success: false,
+                message: "Access denied",
+                data: response
+            })
+        }
+        return res.status(200).json({
+            success: true,
+            message: "Post updated succesfully",
             data: response
         })
     }
-    return res.status(200).json({
-        success:true,
-        message:"Post updated succesfully",
-        data:response
-    })
+    catch(e){
+        return res.json({
+            message:"Post is not there"
+        })
+    }
 }

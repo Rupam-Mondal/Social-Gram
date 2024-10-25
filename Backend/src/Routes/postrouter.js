@@ -8,6 +8,6 @@ const postrouter = express.Router();
 postrouter.post('/', isAuthenticate, upload.single('image') , createPost);
 postrouter.get('/', getAllpost);
 postrouter.delete('/:id', isAuthenticate, deletepost);
-postrouter.put('/:id' , upload.single('image') , updatepost);
+postrouter.put('/:id' , isAuthenticate, upload.single('image') , updatepost);
 
 export default postrouter;

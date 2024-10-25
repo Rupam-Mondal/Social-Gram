@@ -27,9 +27,7 @@ export const findPostById = async (id) => {
         return post;
     } catch (error) {
         console.log(error);
-        throw {
-            message : "Post does not exists"
-        }
+        return null;
     }
 }
 
@@ -44,7 +42,12 @@ export const deletePostById = async (id) => {
 
 export async function updatepostbyid(id, object){
     console.log(id, object)
-    const post = await Post.findByIdAndUpdate(id , object , {new:true});
-    console.log(post)
-    return post;
+    try{
+        const post = await Post.findByIdAndUpdate(id, object, { new: true });
+        console.log(post)
+        return post;
+    }
+    catch(e){
+        throw e;
+    }
 }

@@ -39,7 +39,21 @@ export async function deletepostservice(id , userid){
     }
 }
 
-export async function updatepostservice(id , object){
-    const response = await updatepostbyid(id , object);
-    return response;
+export async function updatepostservice(id , object , userid){
+    try{
+        const post = await findPostById(id);
+        if (!post) {
+            throw{
+                message : "Post is not there"
+            }
+        }
+        if (post.user != userid) {
+            return null;
+        }
+        const response = await updatepostbyid(id, object);
+        return response;
+    }
+    catch(e){
+        return null;
+    }
 }
