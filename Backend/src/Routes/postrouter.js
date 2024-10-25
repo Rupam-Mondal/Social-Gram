@@ -5,6 +5,8 @@ import { isAuthenticate } from '../Middlewares/authMiddleware.js';
 
 const postrouter = express.Router();
 
+
+
 postrouter.post('/', isAuthenticate, upload.single('image') , createPost);
 postrouter.get('/', getAllpost);
 postrouter.delete('/:id', isAuthenticate, deletepost);

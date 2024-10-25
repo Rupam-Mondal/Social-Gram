@@ -6,30 +6,17 @@ import UserRouter from './Routes/userRouter.js';
 import { isAuthenticate } from './Middlewares/authMiddleware.js';
 import swaggerui from 'swagger-ui-express';
 import swaggerjsdoc from 'swagger-jsdoc';
+import { options } from './utils/Swagger.js';
 
 
 const port = 3000;
 
-const options = {
-    definition : {
-        info: {
-            title: "Image gram api",
-            version: '0.1.0',
-            description: "This is a simple social media backend made with express where user can get same experience like other social media"
-        },
-        servers: [
-            {
-                url: 'http://localhost:3000'
-            }
-        ]
-    },
-    apis:['../Routes/*.js'],
-}
 
 const swaggerdocs = swaggerjsdoc(options);
-app.use('/api-docs', swaggerui.serve, swaggerui.setup(swaggerdocs))
+
 
 const app = express();
+app.use('/api-docs', swaggerui.serve, swaggerui.setup(swaggerdocs))
 
 app.use(express.json());
 app.use(express.text());
