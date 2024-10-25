@@ -32,22 +32,30 @@ export async function getAllpost(req , res){
 }
 
 export async function deletepost(req , res){
-    const postId = req.params.id;
+    try{
+        const postId = req.params.id;
 
-    const responsecontroller = await deletepostservice(postId);
+        const responsecontroller = await deletepostservice(postId, req.user.id);
 
-    if(!responsecontroller){
+        if (!responsecontroller) {
+            return res.status(404).json({
+                success: false,
+                message: "No post is there",
+            })
+        }
+
+        return res.status(200).json({
+            success: true,
+            message: "Posts deleted successfully",
+            data: responsecontroller
+        })
+    }
+    catch(e){
         return res.status(404).json({
             success: false,
             message: "No post is there",
         })
     }
-
-    return res.status(200).json({
-        success: true,
-        message: "Posts deleted successfully",
-        data: responsecontroller
-    })
 }
 
 export async function updatepost(req , res){

@@ -27,6 +27,9 @@ export const findPostById = async (id) => {
         return post;
     } catch (error) {
         console.log(error);
+        throw {
+            message : "Post does not exists"
+        }
     }
 }
 

@@ -1,4 +1,4 @@
-import { createPostOnDb, deletePostById, findAllPosts, updatepostbyid } from "../repositories/postRepository.js";
+import { createPostOnDb, deletePostById, findAllPosts, findPostById, updatepostbyid } from "../repositories/postRepository.js";
 
 
 export async function createPostService(object){
@@ -16,10 +16,27 @@ export async function allpostservice(limit, offset){
     return {allpost}
 }
 
-export async function deletepostservice(id){
-    const response = await deletePostById(id);
-    console.log(response);
-    return response;
+export async function deletepostservice(id , userid){
+    try{
+        const post = await findPostById(id);
+        if(!post){
+            throw {
+                message : "Post does not exist"
+            }
+        }
+        console.log(post)
+        if (post.user != userid) {
+            throw {
+                message: "Unauthorised user"
+            }
+        }
+        const response = await deletePostById(id);
+        console.log(response);
+        return response;
+    }
+    catch(e){
+        throw e;
+    }
 }
 
 export async function updatepostservice(id , object){
