@@ -1,6 +1,6 @@
 import cloudinary from "./cloudinaryConfig.js";
 
-export const deleteImageFromCloudinary = async (publicId = 'fg2uxujodajaqnl5aysa') => {
+export const deleteImageFromCloudinary = async (publicId) => {
     try {
         const result = await cloudinary.uploader.destroy(publicId);
         console.log('Image deleted:', result);
@@ -10,5 +10,3 @@ export const deleteImageFromCloudinary = async (publicId = 'fg2uxujodajaqnl5aysa
         throw error;
     }
 };
-
-await deleteImageFromCloudinary();

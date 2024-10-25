@@ -6,6 +6,7 @@ export async function findUserByEmail(email){
         return user;
     } catch (error) {
         console.log("Something went wrong");
+        return null;
     }
 }
 

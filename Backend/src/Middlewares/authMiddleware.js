@@ -1,3 +1,4 @@
+import { findUserByEmail } from "../repositories/userRepository.js";
 import { verifyJwtToken } from "../utils/jwt.js";
 
 export function isAuthenticate(req , res , next){
@@ -12,6 +13,13 @@ export function isAuthenticate(req , res , next){
     try {
         const response = verifyJwtToken(Token);
         console.log(response)
+        const userfetched = findUserByEmail(response.email);
+        if(!userfetched){
+            return res.json({
+                success:false,
+                message:"User is not there"
+            })
+        }
         req.user = response;
 
         next();
