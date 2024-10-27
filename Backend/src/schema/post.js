@@ -21,7 +21,13 @@ const postSchema = new mongoose.Schema({
     likes:{
         type: Number,
         default:0,
-    }
+    },
+    LikeProfileId:[
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Likes"
+        }
+    ]
 });
 
 const Post = mongoose.model("Post" , postSchema);
