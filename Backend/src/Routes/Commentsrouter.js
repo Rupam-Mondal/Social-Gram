@@ -4,7 +4,7 @@ import { createComment, createNestedComment } from '../controllers/commentContro
 
 const commentRouter = express.Router();
 
-commentRouter.post('/:postId/:userId', isAuthenticate, createComment);
-commentRouter.post('/comment/:commentId/:userId' , isAuthenticate , createNestedComment);
+commentRouter.post('/:postId', isAuthenticate, createComment);
+commentRouter.post('/comment/:commentId' , isAuthenticate , createNestedComment);
 
 export default commentRouter;
