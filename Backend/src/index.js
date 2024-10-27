@@ -7,6 +7,7 @@ import { isAuthenticate } from './Middlewares/authMiddleware.js';
 import swaggerui from 'swagger-ui-express';
 import swaggerjsdoc from 'swagger-jsdoc';
 import { options } from './utils/Swagger.js';
+import { limiter } from './Middlewares/rateLimitor.js';
 
 
 const port = 3000;
@@ -20,6 +21,7 @@ app.use('/api-docs', swaggerui.serve, swaggerui.setup(swaggerdocs))
 
 app.use(express.json());
 app.use(express.text());
+app.use(limiter)
 
 app.use(cors({
     origin: 'http://localhost:5173', 
