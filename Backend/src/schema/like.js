@@ -9,7 +9,12 @@ const LikesSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Comments"
     },
+    user:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    }
 
 } , {timestamps:true});
 
-const Likes = mongoose.model("Likes" , LikesSchema)
+const Likes = mongoose.model("Likes" , LikesSchema);
+export default Likes;

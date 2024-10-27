@@ -88,7 +88,7 @@ export async function updatepost(req , res){
     }
 }
 
-export async function likePostController(req , res){
+export async function LikePostController(req , res){
     try {
         const postId = req.params.id;
         const response = await likePostService(postId);
