@@ -1,4 +1,4 @@
-import { allpostservice, createPostService, deletepostservice, updatepostservice } from "../services/postService.js";
+import { allpostservice, createPostService, deletepostservice, likePostService, updatepostservice } from "../services/postService.js";
 
 export async function createPost(req , res){
     const userDetails = req.user;
@@ -84,6 +84,24 @@ export async function updatepost(req , res){
     catch(e){
         return res.json({
             message:"Post is not there"
+        })
+    }
+}
+
+export async function likePostController(req , res){
+    try {
+        const postId = req.params.id;
+        const response = await likePostService(postId);
+        return res.json({
+            success:true,
+            message:"Post liked Successfully",
+            data:response
+        })
+    } catch (error) {
+        return res.json({
+            success: false,
+            message: "something went wrong",
+            data: response
         })
     }
 }

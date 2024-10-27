@@ -57,3 +57,14 @@ export async function updatepostservice(id , object , userid){
         return null;
     }
 }
+
+export async function likePostService(postId){
+    try {
+        const post = await findPostById(postId)
+        post.likes = post.likes + 1;
+        const response = updatepostbyid(postId , post);
+        return response;
+    } catch (error) {
+        throw e;
+    }
+}
