@@ -28,7 +28,7 @@ const postSchema = new mongoose.Schema({
             ref: "Likes"
         }
     ]
-});
+} , {timestamps:true});
 
 const Post = mongoose.model("Post" , postSchema);
 
