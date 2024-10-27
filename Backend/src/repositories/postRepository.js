@@ -41,13 +41,13 @@ export const deletePostById = async (id) => {
 }
 
 export async function updatepostbyid(id, object){
-    console.log(id, object)
     try{
         const post = await Post.findByIdAndUpdate(id, object, { new: true });
         console.log(post)
         return post;
     }
     catch(e){
+        console.log(e)
         throw e;
     }
 }
