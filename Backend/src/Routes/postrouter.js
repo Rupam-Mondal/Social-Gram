@@ -12,7 +12,7 @@ postrouter.post('/', isAuthenticate, upload.single('image') , createPost);
 postrouter.get('/', getAllpost);
 postrouter.delete('/:id', isAuthenticate, deletepost);
 postrouter.put('/:id' , isAuthenticate, upload.single('image') , updatepost);
-postrouter.post('/likes/:id', likePostController)
+postrouter.post('/likes/:id', isAuthenticate , likePostController)
 postrouter.use('/comment' , commentRouter);
 
 export default postrouter;
