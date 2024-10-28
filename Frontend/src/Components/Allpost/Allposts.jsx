@@ -41,6 +41,7 @@ function Allposts() {
                                 key={i}
                                 caption={v.caption}
                                 Image={v.image}
+                                userId = {v.user.username}
                             />
                         ))
                     }
