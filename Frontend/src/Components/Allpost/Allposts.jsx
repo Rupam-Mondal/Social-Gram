@@ -34,7 +34,6 @@ function Allposts() {
                     next={fetchmoredata}
                     scrollableTarget="scrollableDiv" // Bind to this specific div
                 >
-                    <MiniPostCreationSection />
                     {
                         dataarray && dataarray.map((v, i) => (
                             <Imagecard

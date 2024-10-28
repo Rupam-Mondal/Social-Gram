@@ -1,5 +1,6 @@
 import Allposts from "../Allpost/Allposts";
 import Leftbar from "../Leftbar/Leftbar";
+import PostBox from "../postBox/postBox";
 import Rightbar from "../Rightbar/rightbar";
 
 function Home(){
@@ -9,6 +10,7 @@ function Home(){
                 <Leftbar />
                 <Allposts/>
                 <Rightbar/>
+                <PostBox/>
             </div>
         </>
     )

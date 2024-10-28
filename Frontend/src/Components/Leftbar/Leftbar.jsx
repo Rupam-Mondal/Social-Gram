@@ -1,7 +1,9 @@
 import { FaHome, FaSearch, FaBell, FaEnvelope, FaUsers, FaUser, FaEllipsisH } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import useStore from "../../config/Zustandconfig";
 function Leftbar() {
     const navigate = useNavigate()
+    const { count, display, inc, visibility } = useStore();
     function Explore(){
         navigate('/Explore')
     }
@@ -40,8 +42,11 @@ function Leftbar() {
                     <div>More</div>
                 </div>
 
-                <div onClick={Explore} className="w-full flex justify-center mt-10">
-                    <div className="h-11 w-28 bg-blue-600 cursor-pointer rounded-xl flex justify-center items-center text-xl">Post</div>
+                <div className="w-full flex justify-center mt-10">
+                    <div className="h-11 w-28 bg-blue-600 cursor-pointer rounded-xl flex justify-center items-center text-xl" onClick={() => {
+                        console.log(display)
+                        visibility();
+                    }}>Post</div>
                 </div>
             </div>
         </>
