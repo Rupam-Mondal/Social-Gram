@@ -1,6 +1,7 @@
+import { useEffect } from "react";
 import Allposts from "../Allpost/Allposts";
 import Leftbar from "../Leftbar/Leftbar";
-import PostBox from "../postBox/postBox";
+import PostBox from "../postBox/PostBox";
 import Rightbar from "../Rightbar/rightbar";
 
 function Home(){
