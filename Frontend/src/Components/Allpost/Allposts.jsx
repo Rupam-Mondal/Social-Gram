@@ -4,29 +4,34 @@ import MiniPostCreationSection from "../miniPostCreation/miniPostCreation";
 import Imagecard from "../ImageCard/Imagecard";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useEffect, useState } from "react";
+import useStore from "../../config/Zustandconfig";
+import PostBox from "../postBox/PostBox";
 
 function Allposts() {
-    const [offset, setOffset] = useState(0);
     const [dataarray, setDataarray] = useState([]);
-    const [postnumber, setPostnumber] = useState(5);
+    const { count, display, offset, postnumber, incoffset, visibility, offsetzero } = useStore();
 
-    const { data, error, isLoading } = useQuery(['images', offset], () => getAllImage(postnumber, offset), {
+    const { data, error, isLoading , refetch } = useQuery(['images', offset], () => getAllImage(postnumber, offset), {
         keepPreviousData: true,
     });
 
     useEffect(() => {
+        if(offset == 0){
+            setDataarray([])
+        }
         if (data) {
             setDataarray((prev) => [...prev, ...data.data.allpost]);
         }
     }, [data]);
 
     function fetchmoredata() {
-        setOffset(offset + postnumber);
+        incoffset();
     }
 
     return (
         <>
             <div id="scrollableDiv" className="h-full w-2/4 border-l-[1px] border-white overflow-y-auto">
+                <PostBox refetch={refetch} />
                 <InfiniteScroll
                     dataLength={dataarray.length}
                     hasMore={true}

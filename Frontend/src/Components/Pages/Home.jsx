@@ -11,7 +11,6 @@ function Home(){
                 <Leftbar />
                 <Allposts/>
                 <Rightbar/>
-                <PostBox/>
             </div>
         </>
     )

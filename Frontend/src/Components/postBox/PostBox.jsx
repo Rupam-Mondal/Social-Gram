@@ -2,8 +2,8 @@ import { useState } from "react";
 import useStore from "../../config/Zustandconfig";
 import PostBoxReq from "./postBoxReq";
 
-function PostBox() {
-    const { count, display, inc, visibility } = useStore();
+function PostBox({refetch}) {
+    const { count, display, offset, postnumber, incoffset, visibility, offsetzero } = useStore();
     const [image , setImage] = useState(null)
     const [caption , setCaption] = useState("")
 
@@ -23,7 +23,11 @@ function PostBox() {
         <div
             className={`${display} fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center bg-gray-900 shadow-2xl rounded-xl p-8 max-w-lg mx-auto my-4 z-50 border border-gray-700`}
         >
-            <form action="Post" onSubmit={(e) => { PostBoxReq(e, caption, image) }} className="w-full space-y-6">
+            <form action="Post" onSubmit={async (e) => { 
+                    await PostBoxReq(e, caption, image);
+                    offsetzero();
+                    refetch();
+                }} className="w-full space-y-6">
                 
                 <h2 className="text-2xl font-semibold text-gray-100 text-center">Create a Post</h2>
 
