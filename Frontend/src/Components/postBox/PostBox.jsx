@@ -53,6 +53,7 @@ function PostBox({refetch}) {
                 <button
                     type="submit"
                     className="w-full py-3 mt-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-all duration-200"
+                    onClick={visibility}
                 >
                     Post
                 </button>
