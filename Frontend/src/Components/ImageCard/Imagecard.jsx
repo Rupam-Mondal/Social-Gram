@@ -1,6 +1,11 @@
 import { FiThumbsUp, FiMessageSquare, FiEdit, FiTrash } from 'react-icons/fi';
+import PostDelete from '../../Services/PostDeleteService';
 
-function Imagecard({ caption, Image, userId }) {
+function Imagecard({ caption, Image, userId , postId }) {
+    async function deleteHandler(e){
+        const response = await PostDelete(postId);
+        console.log(response)
+    }
     return (
         <div className="relative w-full h-auto border border-gray-700 flex flex-col px-8 py-4 bg-black shadow-lg space-y-4">
             {/* Update and Delete Icons */}
@@ -8,7 +13,7 @@ function Imagecard({ caption, Image, userId }) {
                 <button className="text-gray-500 hover:text-gray-300 transition duration-200">
                     <FiEdit className="text-lg" title="Update" />
                 </button>
-                <button className="text-gray-500 hover:text-gray-300 transition duration-200">
+                <button className="text-gray-500 hover:text-gray-300 transition duration-200" onClick={deleteHandler}>
                     <FiTrash className="text-lg" title="Delete" />
                 </button>
             </div>
