@@ -11,7 +11,6 @@ function Auth() {
 
     async function handleSubmit(e){
         e.preventDefault();
-        console.log(username , email , password)
         if(username && password){
             const userLoginObject = {
                 "email":email,
