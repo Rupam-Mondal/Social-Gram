@@ -22,6 +22,7 @@ function Auth() {
             console.log(response)
             if(response.success){
                 navigate('/home')
+                localStorage.setItem("token", response.data);
             }
         }
     }
