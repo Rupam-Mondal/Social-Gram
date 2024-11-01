@@ -1,8 +1,18 @@
-import { FiThumbsUp, FiMessageSquare } from 'react-icons/fi';
+import { FiThumbsUp, FiMessageSquare, FiEdit, FiTrash } from 'react-icons/fi';
 
 function Imagecard({ caption, Image, userId }) {
     return (
-        <div className="w-full h-auto border border-gray-700 flex flex-col px-8 py-4 bg-black shadow-lg space-y-4">
+        <div className="relative w-full h-auto border border-gray-700 flex flex-col px-8 py-4 bg-black shadow-lg space-y-4">
+            {/* Update and Delete Icons */}
+            <div className="absolute top-4 right-4 flex space-x-4">
+                <button className="text-gray-500 hover:text-gray-300 transition duration-200">
+                    <FiEdit className="text-lg" title="Update" />
+                </button>
+                <button className="text-gray-500 hover:text-gray-300 transition duration-200">
+                    <FiTrash className="text-lg" title="Delete" />
+                </button>
+            </div>
+
             {/* User ID Section */}
             <div className="text-gray-500 text-sm font-medium mb-2">User ID: {userId}</div>
 
@@ -30,4 +40,3 @@ function Imagecard({ caption, Image, userId }) {
 }
 
 export default Imagecard;
-
