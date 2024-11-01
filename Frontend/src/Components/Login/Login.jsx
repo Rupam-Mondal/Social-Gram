@@ -1,11 +1,13 @@
 import { useState } from "react";
 import Loginservice from "../../Services/LoginService";
+import { useNavigate } from "react-router";
 
 function Auth() {
 
     const [username , setUsername] = useState(null);
     const [password , setPassword] = useState(null);
     const [email , setEmail] = useState();
+    const navigate = useNavigate();
 
     async function handleSubmit(e){
         e.preventDefault();
@@ -19,6 +21,9 @@ function Auth() {
 
             const response = await Loginservice(userLoginObject);
             console.log(response)
+            if(response.success){
+                navigate('/home')
+            }
         }
     }
 
