@@ -1,71 +1,80 @@
-# Imagegram Backend
+# ImageGram
 
-## Introduction
-This is the backend service for the Imagegram application. It provides APIs for user authentication, image uploads, and other functionalities.
+ImageGram is a full-stack project with separate frontend and backend components. This README provides an overview of the project structure, installation instructions, and details about each part.
 
-## Getting Started
+## Table of Contents
+- [Frontend](#frontend)
+    - [Installation](#frontend-installation)
+    - [Demo Images](#demo-images)
+- [Backend](#backend)
+    - [Installation](#backend-installation)
+    - [API Routes](#api-routes)
 
-### Installation
-1. Clone the repository:
-    ```sh
-    git clone https://github.com/Rupam-Mondal/Social-Gram
-    ```
-2. Navigate to the project directory:
-    ```sh
-    cd Backend
-    ```
-3. Install dependencies:
-    ```sh
-    npm install
-    ```
-    or
-    ```sh
-    yarn install
-    ```
+## Frontend
 
-### Configuration
-1. Create a `.env` file in the root directory and add the following environment variables:
-    ```env
-    DB_URL = ''
-    CDN_API_KEY = 
-    CDN_API_SECRET_KEY = ''
-    CLOUD_NAME = ''
-    JWT_SECRET_KEY = ''
-    ```
+The frontend of ImageGram is responsible for the user interface and user experience. It includes various components and pages to interact with the backend services.
 
-### Running the Server
-1. Start the development server:
-    ```sh
-    npm start
-    ```
+### Frontend Installation
 
-## API Routes
+To set up the frontend, follow these steps:
 
-### User Routes
-- `POST /user/signup` - Register a new user. send a object like given below uin post request
-    ```
-        {
-            username:
-            email:
-            password:
-        }
-    ```
-- `POST /user/signin` - To login send a object like given.After sign user will get a jwt token. That token is required to send any type request to backend except signup.
-    ```
-        {
-            username:
-            email:
-            password:
-        }
-    ```
+1. Navigate to the `frontend` directory:
+        ```sh
+        cd frontend
+        ```
+2. Install the dependencies:
+        ```sh
+        npm install
+        ```
+3. Start the development server:
+        ```sh
+        npm start
+        ```
 
-### Posts Related Routes
-- `POST /post` - create post in Imagegram
-- `GET /post` - Get all post
+### Demo Images
 
+Here are some demo images of the frontend:
 
-## Contributing
-Feel free to submit issues and pull requests.
+![Home Page](path/to/homepage.png)
+*Home Page*
 
-## License
-This project is licensed under the MIT License.
+![Profile Page](path/to/profilepage.png)
+*Profile Page*
+
+## Backend
+
+The backend of ImageGram handles the server-side logic, including API routes, database interactions, and authentication.
+
+### Backend Installation
+
+To set up the backend, follow these steps:
+
+1. Navigate to the `backend` directory:
+        ```sh
+        cd backend
+        ```
+2. Install the dependencies:
+        ```sh
+        npm install
+        ```
+3. Start the server:
+        ```sh
+        npm start
+        ```
+
+### API Routes
+
+The backend provides several API routes for different functionalities:
+
+- **User Routes**
+    - `POST /api/users/register` - Register a new user
+    - `POST /api/users/login` - Login a user
+
+- **Post Routes**
+    - `GET /api/posts` - Get all posts
+    - `POST /api/posts` - Create a new post
+
+- **Comment Routes**
+    - `POST /api/comments` - Add a comment to a post
+
+For detailed API documentation, refer to the [API Docs](path/to/api-docs).
