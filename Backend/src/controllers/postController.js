@@ -1,4 +1,4 @@
-import { allpostservice, createPostService, deletepostservice, likePostService, updatepostservice } from "../services/postService.js";
+import { allpostservice, createPostService, deletepostservice, getDetailsService, likePostService, updatepostservice } from "../services/postService.js";
 
 export async function createPost(req , res){
     const userDetails = req.user;
@@ -102,6 +102,22 @@ export async function LikePostController(req , res){
             success: false,
             message: "something went wrong",
             data: response
+        })
+    }
+}
+
+export async function getDetailsOfPost(req , res){
+    try {
+        const response = await getDetailsService(req.params.id);
+        return res.json({
+            success:true,
+            message:"Details fetched successfully",
+            data:response
+        })
+    } catch (error) {
+        return res.json({
+            success:false,
+            message:"Something went wrong",
         })
     }
 }

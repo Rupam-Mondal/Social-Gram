@@ -68,3 +68,12 @@ export async function likePostService(postId){
         throw e;
     }
 }
+
+export async function getDetailsService(postId){
+    try {
+        const response = await findPostById(postId);
+        return response;
+    } catch (error) {
+        throw error;
+    }
+}
