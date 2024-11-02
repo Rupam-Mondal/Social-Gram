@@ -16,10 +16,14 @@ function CommentSection({image}){
                 </div>
 
                 {/* comment section */}
-                <div className="h-full w-1/2 border-l-2" onClick={() => {
+                <div className="h-full w-1/2 border-l-2 text-white" onClick={() => {
                     console.log(data?.data);
                 }}>
-
+                    {
+                        data?.data?.comments && data.data.comments.map((v , i) => (
+                            <div key={i}>{v}</div>
+                        ))
+                    }
                 </div>
             </div>
         </>
