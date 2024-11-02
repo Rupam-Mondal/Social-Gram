@@ -1,7 +1,12 @@
 import { FiThumbsUp, FiMessageSquare, FiEdit, FiTrash } from 'react-icons/fi';
 import PostDelete from '../../Services/PostDeleteService';
+import { useNavigate } from 'react-router';
 
 function Imagecard({ caption, Image, userId , postId }) {
+    const navigate = useNavigate();
+    function CommentSectionHandler(){
+        navigate(`/${postId}/comment` , {state:{image:Image}});
+    }
     async function deleteHandler(e){
         const response = await PostDelete(postId);
         console.log(response)
@@ -35,7 +40,9 @@ function Imagecard({ caption, Image, userId , postId }) {
                     <FiThumbsUp className="mr-2 text-lg" />
                     Like
                 </button>
-                <button className="flex items-center text-gray-500 hover:text-gray-300 transition duration-200">
+                <button className="flex items-center text-gray-500 hover:text-gray-300 transition duration-200"
+                    onClick={CommentSectionHandler}
+                >
                     <FiMessageSquare className="mr-2 text-lg" />
                     Comment
                 </button>

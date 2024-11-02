@@ -3,6 +3,7 @@ import Home from "../Components/Pages/Home";
 import Explore from "../Components/Pages/Explorepage";
 import Auth from "../Components/Login/Login";
 import Signup from "../Components/Signup/Signup";
+import CommentSection from "../Components/CommentSection/CommentSection";
 
 export function Routing(){
     return (
@@ -11,6 +12,7 @@ export function Routing(){
                 <Route path="/" element={<Auth/>}></Route>
                 <Route path="/home" element={<Home />}></Route>
                 <Route path="/signup" element={<Signup/>}></Route>
+                <Route path="/:id/comment" element={<CommentSection/>}></Route>
                 <Route path="/Explore" element={<Explore />}></Route>
                 <Route path="/Notification" element={<Explore />}></Route>
                 <Route path="/Messages" element={<Explore />}></Route>
