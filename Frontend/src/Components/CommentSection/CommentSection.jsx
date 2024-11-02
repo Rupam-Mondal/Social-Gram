@@ -1,8 +1,12 @@
-import { useLocation } from "react-router";
+import { useQuery } from "react-query";
+import { useLocation, useParams } from "react-router";
+import getPostDetails from "../../Services/Singlepostdetails";
 
 function CommentSection({image}){
     const location = useLocation();
     const Image = location.state?.image; 
+    const { id } = useParams();
+    const { data, isLoading, isError } = useQuery(['Comment'], () => getPostDetails(id))
     return (
         <>
             <div className="h-screen w-full flex bg-black box-border">
@@ -12,7 +16,9 @@ function CommentSection({image}){
                 </div>
 
                 {/* comment section */}
-                <div className="h-full w-1/2 border-l-2">
+                <div className="h-full w-1/2 border-l-2" onClick={() => {
+                    console.log(data?.data);
+                }}>
 
                 </div>
             </div>
