@@ -1,4 +1,4 @@
-import { createCommentService, nestedCommentService } from "../services/commentService.js";
+import { createCommentService, getCommentService, nestedCommentService } from "../services/commentService.js";
 
 export async function createComment(req , res){
 
@@ -33,6 +33,22 @@ export async function createNestedComment(req , res){
         return res.json({
             success: false,
             message: "Something went wrong",
+        })
+    }
+}
+
+export async function getDetailsComment(req , res){
+    try {
+        const response = await getCommentService(req.params.id);
+        return res.json({
+            success:true,
+            message:"Details fetched successfully",
+            data:response
+        })
+    } catch (error) {
+        return res.json({
+            success:false,
+            message:"Something went wrong"
         })
     }
 }

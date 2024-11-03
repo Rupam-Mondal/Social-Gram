@@ -50,3 +50,12 @@ export async function nestedCommentService(commentObject){
         }
     }
 }
+
+export async function getCommentService(commentId){
+    try {
+        const response = await findcommentById(commentId);
+        return response;
+    } catch (error) {
+        throw error;
+    }
+}
