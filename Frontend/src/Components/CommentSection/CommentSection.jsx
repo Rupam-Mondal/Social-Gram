@@ -4,6 +4,7 @@ import { useLocation, useParams } from "react-router";
 import getPostDetails from "../../Services/Singlepostdetails";
 import GetCommentDetails from "../../Services/CommentDetails";
 import CommentService from "../../Services/Commenrservice";
+import { CgProfile } from "react-icons/cg";
 
 function CommentSection({ image }) {
     const location = useLocation();
@@ -22,14 +23,15 @@ function CommentSection({ image }) {
     );
 
     async function CommentHandler(e){
-        e.preventDefault()
+        e.preventDefault();
         const response = await CommentService(id , {
             "text":newComment
         });
 
         if(response){
             setNewComment("");
-            await CommentRefetch();
+            await PostRefetch();
+            await CommentRefetch(); 
 
         }
         console.log(response)
@@ -55,11 +57,9 @@ function CommentSection({ image }) {
                         commentsData?.map((comment, i) => (
                             <div key={i} className="flex items-start space-x-4 mb-4 p-4 border-b border-gray-700">
                                 {/* Profile Image */}
-                                <img
-                                    src={comment?.data?.userImage || "/default-profile.png"}
-                                    alt="User profile"
-                                    className="w-10 h-10 rounded-full object-cover"
-                                />
+                                <div className="h-8 w-8 rounded-full flex justify-center items-center">
+                                    <CgProfile size={30} />
+                                </div>
 
                                 {/* Comment Content */}
                                 <div>
