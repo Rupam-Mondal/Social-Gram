@@ -1,8 +1,9 @@
-import { useState } from "react";
-import { useQuery } from "react-query";
+import { useEffect, useState } from "react";
+import { QueryClient, useQuery } from "react-query";
 import { useLocation, useParams } from "react-router";
 import getPostDetails from "../../Services/Singlepostdetails";
 import GetCommentDetails from "../../Services/CommentDetails";
+import CommentService from "../../Services/Commenrservice";
 
 function CommentSection({ image }) {
     const location = useLocation();
@@ -10,8 +11,8 @@ function CommentSection({ image }) {
     const { id } = useParams();
     const [newComment, setNewComment] = useState("");
 
-    const { data: postData, isLoading, isError } = useQuery(['Comment', id], () => getPostDetails(id));
-    const { data: commentsData, isLoading: commentsLoading, isError: commentsError } = useQuery(
+    const { data: postData, isLoading, isError, refetch: PostRefetch } = useQuery(['Comment', id], () => getPostDetails(id));
+    const { data: commentsData, isLoading: commentsLoading, isError: commentsError , refetch:CommentRefetch } = useQuery(
         ['CommentDetails', id],
         async () => {
             const commentPromises = postData?.data?.comments.map(commentId => GetCommentDetails(commentId));
@@ -19,6 +20,21 @@ function CommentSection({ image }) {
         },
         { enabled: !!postData?.data?.comments }
     );
+
+    async function CommentHandler(e){
+        e.preventDefault()
+        const response = await CommentService(id , {
+            "text":newComment
+        });
+
+        if(response){
+            setNewComment("");
+            await CommentRefetch();
+
+        }
+        console.log(response)
+        console.log("Done");
+    }
 
     return (
         <div className="h-screen w-full flex bg-black box-border">
@@ -67,7 +83,7 @@ function CommentSection({ image }) {
                         value={newComment}
                         onChange={(e) => setNewComment(e.target.value)}
                     />
-                    <button className="text-blue-500 font-semibold hover:text-blue-400">
+                    <button className="text-blue-500 font-semibold hover:text-blue-400" onClick={CommentHandler}>
                         Post
                     </button>
                 </div>
