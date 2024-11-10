@@ -1,1 +1,1 @@
-export const baseurl = 'http://localhost:3000';
+export const baseurl = 'https://social-gram-1.onrender.com';
