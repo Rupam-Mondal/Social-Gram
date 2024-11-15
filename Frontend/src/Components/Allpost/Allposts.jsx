@@ -47,6 +47,7 @@ function Allposts() {
                                 Image={v.image}
                                 userId = {v.user.username}
                                 postId={v._id}
+                                refetch={refetch}
                             />
                         ))
                     }

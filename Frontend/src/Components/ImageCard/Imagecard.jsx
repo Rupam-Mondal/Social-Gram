@@ -1,16 +1,27 @@
 import { FiThumbsUp, FiMessageSquare, FiEdit, FiTrash } from 'react-icons/fi';
 import PostDelete from '../../Services/PostDeleteService';
 import { useNavigate } from 'react-router';
+import { useState } from 'react';
+import Likeservice from '../../Services/LikeService';
 
-function Imagecard({ caption, Image, userId , postId }) {
+function Imagecard({ caption, Image, userId, postId, refetch }) {
     const navigate = useNavigate();
-    function CommentSectionHandler(){
-        navigate(`/${postId}/comment` , {state:{image:Image}});
+    const [liked, setLiked] = useState(false); // State to track like status
+
+    function CommentSectionHandler() {
+        navigate(`/${postId}/comment`, { state: { image: Image } });
     }
-    async function deleteHandler(e){
+
+    async function deleteHandler(e) {
         const response = await PostDelete(postId);
-        console.log(response)
+        refetch();
+        console.log(response);
     }
+
+    function toggleLike() {
+        setLiked(!liked); // Toggle like state
+    }
+
     return (
         <div className="relative w-full h-auto border border-gray-700 flex flex-col px-8 py-4 bg-black shadow-lg space-y-4">
             {/* Update and Delete Icons */}
@@ -18,7 +29,10 @@ function Imagecard({ caption, Image, userId , postId }) {
                 <button className="text-gray-500 hover:text-gray-300 transition duration-200">
                     <FiEdit className="text-lg" title="Update" />
                 </button>
-                <button className="text-gray-500 hover:text-gray-300 transition duration-200" onClick={deleteHandler}>
+                <button
+                    className="text-gray-500 hover:text-gray-300 transition duration-200"
+                    onClick={deleteHandler}
+                >
                     <FiTrash className="text-lg" title="Delete" />
                 </button>
             </div>
@@ -36,11 +50,19 @@ function Imagecard({ caption, Image, userId , postId }) {
 
             {/* Like and Comment Buttons */}
             <div className="flex justify-between items-center mt-4">
-                <button className="flex items-center text-gray-500 hover:text-gray-300 transition duration-200">
+                <button
+                    className={`flex items-center ${liked ? 'text-blue-500' : 'text-gray-500'
+                        }  transition duration-200`}
+                    onClick={async function () {
+                        toggleLike();
+                        await Likeservice(postId);
+                    }}
+                >
                     <FiThumbsUp className="mr-2 text-lg" />
                     Like
                 </button>
-                <button className="flex items-center text-gray-500 hover:text-gray-300 transition duration-200"
+                <button
+                    className="flex items-center text-gray-500 hover:text-gray-300 transition duration-200"
                     onClick={CommentSectionHandler}
                 >
                     <FiMessageSquare className="mr-2 text-lg" />
