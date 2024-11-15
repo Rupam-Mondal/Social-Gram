@@ -26,7 +26,7 @@ export async function nestedCommentOnDb(text, reply, user) {
 
 export const findcommentById = async (id) => {
     try {
-        const post = await Comment.findById(id);
+        const post = await Comment.findById(id).populate('user');
         return post;
     } catch (error) {
         console.log(error);

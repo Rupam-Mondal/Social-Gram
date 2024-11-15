@@ -64,7 +64,7 @@ function CommentSection({ image }) {
                                 {/* Comment Content */}
                                 <div>
                                     <div className="flex items-center space-x-2">
-                                        <p className="text-sm font-semibold">{comment?.data?.username || "User"}</p>
+                                        <p className="text-sm font-semibold">{commentsData[i]?.data?.user?.username || "User"}</p>
                                         <span className="text-xs text-gray-400">• {comment?.data?.timestamp || "Just now"}</span>
                                     </div>
                                     <p className="text-sm mt-1 text-gray-300">{comment?.data?.text}</p>
